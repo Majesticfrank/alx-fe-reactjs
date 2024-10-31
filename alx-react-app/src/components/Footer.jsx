@@ -1,7 +1,9 @@
 function Footer(){
     return(
         <div>
- <p>@ 2023 City Lover</p>
+ <footer>
+  <p>© 2023 City Lovers</p>
+</footer>
  </div>
     );
 }
