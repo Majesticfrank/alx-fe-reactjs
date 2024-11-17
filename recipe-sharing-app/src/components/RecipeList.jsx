@@ -1,6 +1,7 @@
 import React from "react";
-import { useRecipeStore } from "./recipeStore"; 
- export const RecipeList = () => {
+import { useRecipeStore } from "../store/recipeStore"; 
+
+  const RecipeList = () => {
     const recipes = useRecipeStore(state => state.recipes);
 
     return (
@@ -14,3 +15,6 @@ import { useRecipeStore } from "./recipeStore";
       </div>
     );
   };
+  
+
+  export default RecipeList;
