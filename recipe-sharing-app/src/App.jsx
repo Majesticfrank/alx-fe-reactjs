@@ -5,6 +5,7 @@ import RecipeList from './components/RecipeList';
 import RecipeDetails from './components/RecipeDetails';
 import EditRecipeForm from './components/EditRecipeForm';
 import SearchBar from './components/SearchBar';
+import RecommendationsList from './components/RecommendationsList';
 
 function App() {
   return (
@@ -17,6 +18,9 @@ function App() {
           <Route path="/recipe/:id" element={<RecipeDetails />} />
           <Route path="/recipe/:id/edit" element={<EditRecipeForm />} />
           <Route path="/SearchBar" element={<SearchBar/>}/>
+          < Route path='/FavouriteList' element ={<FavoritesList />}/>
+          < Route path='/RecommendationList' element ={<RecommendationsList />}/>
+
         </Routes>
       </div>
     </Router>

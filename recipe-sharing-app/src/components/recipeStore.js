@@ -33,6 +33,22 @@ const useRecipeStore = create((set) => ({
       recipe.title.toLowerCase().includes(state.searchTerm.toLowerCase())
     ),
   })),
+
+  favorites: [], // Array to store favorite recipe IDs
+  addFavorite: (recipeId) => set(state => ({
+    favorites: [...state.favorites, recipeId] // Adds recipe to favorites
+  })),
+  removeFavorite: (recipeId) => set(state => ({
+    favorites: state.favorites.filter(id => id !== recipeId) // Removes recipe from favorites
+  })),
+  recommendations: [], // Array to hold recommended recipes
+  generateRecommendations: () => set(state => {
+    // Simple mock recommendation based on favorites
+    const recommended = state.recipes.filter(recipe =>
+      state.favorites.includes(recipe.id) && Math.random() > 0.5 // Randomly select a few recipes
+    );
+    return { recommendations: recommended }; // Update recommendations
+  }),
 }));
 
 export default useRecipeStore;
