@@ -1,11 +1,12 @@
-
+import React from 'react'
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { initialValues, validationSchema,handleSubmit } from './formikForm';
+import { initialValues, validationSchema, handleSubmit } from './FormikForm' 
 
-const FormComponent = () => {
+const FormikComponenet = () => {
   return (
     <div>
-      <h1>Signup Form</h1>
+
+<h1>Signup Form</h1>
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
@@ -54,4 +55,6 @@ const FormComponent = () => {
   );
 };
 
-export default FormComponent;
+
+   
+export default FormikComponenet
