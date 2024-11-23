@@ -1,14 +1,14 @@
 import './App.css'
 
 import Registrationform from './Components/Registrationform'
-
 function App() {
 
 
   return (
 <div>
   
-<Registrationform/>
+<Registrationform />
+
 
 </div>
   )
