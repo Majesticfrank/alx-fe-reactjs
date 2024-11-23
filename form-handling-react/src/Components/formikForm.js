@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
@@ -9,7 +9,7 @@ const validationSchema = Yup.object().shape({
   password: Yup.string().required('Password is required'),
 });
 
-const FormikForm = () => {
+const formikForm = () => {
   const initialValues = {
     username: '',
     email: '',
@@ -74,4 +74,4 @@ const FormikForm = () => {
   );
 };
 
-export default FormikForm;
+export default formikForm;

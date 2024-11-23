@@ -1,6 +1,4 @@
-
-import React, {useState} from 'react'
-
+import  {useState} from 'react'
 const Registrationform = () => {
 
 const [formData, setFormData] =useState({
@@ -48,6 +46,9 @@ const handlesubmit =(e)=>{
             </div>
             <button type='submit'>Register</button>
         </form>
+
+        
+
     </div>
   );
 };

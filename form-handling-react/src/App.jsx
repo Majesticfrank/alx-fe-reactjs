@@ -1,6 +1,5 @@
-
 import './App.css'
-import FormikForm from './Components/formikForm'
+
 import Registrationform from './Components/Registrationform'
 
 function App() {
@@ -8,16 +7,10 @@ function App() {
 
   return (
 <div>
-
   
 <Registrationform/>
-<FormikForm/>
-
- 
 
 </div>
-
-
   )
 }
 
