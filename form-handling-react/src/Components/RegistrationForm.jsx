@@ -1,5 +1,5 @@
 import  {useState} from 'react'
-const Registrationform = () => {
+const RegistrationForm = () => {
 
 const [formData, setFormData] =useState({
     username:"",
@@ -53,4 +53,4 @@ const handlesubmit =(e)=>{
   );
 };
 
-export default Registrationform;
+export default RegistrationForm;
