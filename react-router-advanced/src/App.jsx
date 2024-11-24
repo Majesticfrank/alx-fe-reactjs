@@ -1,45 +1,35 @@
-
-import './App.css'
-import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
+import React from "react";
+import {  BrowserRouter as Router,Routes,Route, Navigate,} from "react-router-dom";
 import Profile from "./components/Profile";
-import ProfileDetails from "./components/ProfileDetails";
-import ProfileSettings from "./components/ProfileSettings";
-import BlogPost from './components/BlogPost';
-import Login from './components/Login';
-import ProtectedRoute from './components/ProtectedRoute';
-import { AuthProvider } from './components/AuthContext';
-import View from './components/view';
-function App() {
+import Login from "./components/Login";
+import ProtectedRoute from "./components/ProtectedRoute";
+import BlogPost from "./components/BlogPost";
 
+const isAuthenticated = false;
 
-  return ( 
-    <AuthProvider>
-     
-
+const App = () => {
+  return (
     <Router>
-      <View/>
-        <Routes>
-          <Route path="/blog/:slug" element={<BlogPost />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="ProfileDetails" element={<ProfileDetails />} />
-           <Route path="ProfileSettings" element={<ProfileSettings />} />
-
-
-          <Route
-            path="/profile/*"
-            element={
-              <ProtectedRoute>
-                <Profile />
-              </ProtectedRoute>
-            }
-          />
-        </Routes>
+      <Routes>
+        <Route path="/profile/*" element={<Profile />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/post/:postId" element={<Post />} />
+        <Route path="/" element={<Home />} />
         
-  
+        <Route
+          path="/profile/*"
+          element={
+            <ProtectedRoute isAuthenticated={isAuthenticated}>
+              <Profile />
+            </ProtectedRoute>
+          }
+        />
+        <Route path="/blog/:id" element={<BlogPost />} /> {}
+           
+              
+      </Routes>
     </Router>
-  </AuthProvider>
- 
-  )
-}
+  );
+};
 
-export default App
+export default App;
