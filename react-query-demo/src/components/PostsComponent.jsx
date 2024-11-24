@@ -1,7 +1,7 @@
 import React from 'react';
-import { useQuery } from 'react-query'; 
+import { useQuery } from 'react-query';
 
-// Function to fetch posts from JSONPlaceholder API
+// Function to fetch posts data
 const fetchPosts = async () => {
   const response = await fetch('https://jsonplaceholder.typicode.com/posts');
   
@@ -13,12 +13,16 @@ const fetchPosts = async () => {
 };
 
 const PostsComponent = () => {
-  // useQuery hook to fetch posts data with caching and refetching
-  const { data, error, isLoading, isError, refetch } = useQuery('posts', fetchPosts, {
-    staleTime: 60000, // Cache data for 60 seconds (for demonstration purposes)
-    cacheTime: 300000, // Keep cache data for 5 minutes
-    refetchOnWindowFocus: false, // Prevent refetching when the window comes into focus
-  });
+  // useQuery hook to fetch posts data with caching, stale time, and keepPreviousData
+  const { data, error, isLoading, isError, isFetching, refetch } = useQuery(
+    ['posts'],
+    fetchPosts,
+    {
+      staleTime: 60000, // Cache data for 60 seconds
+      cacheTime: 300000, // Keep cache data for 5 minutes
+      keepPreviousData: true, // Keep previous data while fetching new data
+    }
+  );
 
   // Loading state
   if (isLoading) {
@@ -33,7 +37,13 @@ const PostsComponent = () => {
   return (
     <div>
       <h1>Posts</h1>
-      <button onClick={() => refetch()}>Refetch Data</button> {/* Button to trigger a refetch */}
+      
+      {/* Button to trigger refetch */}
+      <button onClick={() => refetch()}>
+        {isFetching ? 'Refetching...' : 'Refetch Data'}
+      </button>
+
+      {/* Display posts */}
       <ul>
         {data.map((post) => (
           <li key={post.id}>
