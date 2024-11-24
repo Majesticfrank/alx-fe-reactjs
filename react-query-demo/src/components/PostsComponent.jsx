@@ -1,5 +1,5 @@
 import React from 'react';
-import { useQuery } from 'react-query'; // Import useQuery from react-query
+import { useQuery } from 'react-query'; 
 
 // Function to fetch posts from JSONPlaceholder API
 const fetchPosts = async () => {
@@ -13,10 +13,11 @@ const fetchPosts = async () => {
 };
 
 const PostsComponent = () => {
-  // useQuery hook to fetch posts data
-  const { data, error, isLoading, isError } = useQuery('posts', fetchPosts, {
-    staleTime: 60000, // Cache data for 60 seconds
+  // useQuery hook to fetch posts data with caching and refetching
+  const { data, error, isLoading, isError, refetch } = useQuery('posts', fetchPosts, {
+    staleTime: 60000, // Cache data for 60 seconds (for demonstration purposes)
     cacheTime: 300000, // Keep cache data for 5 minutes
+    refetchOnWindowFocus: false, // Prevent refetching when the window comes into focus
   });
 
   // Loading state
@@ -32,6 +33,7 @@ const PostsComponent = () => {
   return (
     <div>
       <h1>Posts</h1>
+      <button onClick={() => refetch()}>Refetch Data</button> {/* Button to trigger a refetch */}
       <ul>
         {data.map((post) => (
           <li key={post.id}>
