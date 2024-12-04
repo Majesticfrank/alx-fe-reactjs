@@ -1,5 +1,6 @@
 import './App.css'
-import HomePage from './components/HomePage'
+import Homepage from './components/HomePage'
+
 
 
 
@@ -8,7 +9,7 @@ function App() {
   return (
     <>
       
-  <HomePage/>
+  <Homepage/>
     </>
   )
 }
