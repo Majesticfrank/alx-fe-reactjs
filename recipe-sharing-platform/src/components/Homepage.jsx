@@ -1,11 +1,11 @@
 /* eslint-disable no-unused-vars */
-import React,{useState, useEffect} from 'react';
+import React, {useEffect,useState} from 'react';
 import RecipeData from "../data.json"
 
 const Homepage = () => {
-
     const [recipes, setRecipes] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] =useState(true)
+
 
     useEffect(()=>{
 
@@ -26,7 +26,9 @@ const Homepage = () => {
     if(loading){
         return <div>Loading recipes...</div>;
     }
+
   return (
+
     <div className="bg-gray-100 min-h-screen p-6">
   <h1 className="text-4xl font-bold text-center text-gray-800 mb-8">Recipe List</h1>
   <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
@@ -49,6 +51,8 @@ const Homepage = () => {
       </ul>
 
     </div>
+
+   
   );
 };
 
