@@ -31,9 +31,17 @@ const HomePage = () => {
           >
             View Details
           </Link>
+
+
         </li>
+
       ))}
     </ul>
+
+    
+    <Link to="/add-recipe" className="text-blue-500 hover:underline">
+Add a New Recipe
+</Link>
   </div>
   
   );
