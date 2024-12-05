@@ -5,42 +5,69 @@ const AddRecipeForm = () => {
     const [title, setTitle] =useState("");
     const [ingredients, setIngredients] =useState("");
     const [steps, setSteps] = useState("");
-    const [errorMessage, setErrorMessage]=useState("");
+    const [errors, setError]=useState("");
     const [successMessage, setSuccessMessage]=useState("");
+
+
+
+    const validate = () => {
+        const validationErrors = [];
     
-    const handleSubmit =(e) =>{
+        if (!title) {
+          validationErrors.push("Recipe title is required.");
+        }
+        if (!ingredients) {
+          validationErrors.push("Ingredients are required.");
+        } else {
+          const ingredientsArray = ingredients.split(",").map((item) => item.trim());
+          if (ingredientsArray.length < 2) {
+            validationErrors.push("Please include at least 2 ingredients.");
+          }
+        }
+        if (!steps) {
+          validationErrors.push("Preparation steps are required.");
+        }
+    
+        return validationErrors;
+      };
+    
+      // Submission Handler
+      const handleSubmit = (e) => {
         e.preventDefault();
-
-
-        if (!title || !ingredients || !steps){
-            setErrorMessage('All fiels are required.');
-            return;
+    
+        const validationErrors = validate();
+    
+        if (validationErrors.length > 0) {
+          setErrors(validationErrors.join(" "));
+          setSuccessMessage(""); // Clear success message if there are errors
+          return;
         }
-        const ingredientsArray =ingredients.split(",").map((item)=> item.trim());
-        if(ingredientsArray.length < 2){
-            setErrorMessage('please include at least 2 ingredients.');
-            return;
-        }
-        setErrorMessage('');
-        setSuccessMessage('Recipe Added successly!');
-
-
-        const newRecipe ={
-            title,
-            ingredients:ingredientsArray,
-            steps,
+    
+        // Clear errors and set success message
+        setErrors("");
+        setSuccessMessage("Recipe added successfully!");
+    
+        // Create a new recipe object
+        const newRecipe = {
+          title,
+          ingredients: ingredients.split(",").map((item) => item.trim()),
+          steps,
         };
-        console.log("Form Submitted",newRecipe);
+    
+        // Log the new recipe (or send it to a server/API)
+        console.log("Form Submitted", newRecipe);
+    
+        // Reset the form fields
         setTitle("");
         setIngredients("");
         setSteps("");
-
-    };
+      };
+    
   return (
     <div className="max-w-lg mx-auto p-6 bg-white shadow-lg rounded-lg">
     <h1 className="text-2xl font-bold mb-4">Add a New Recipe</h1>
-    {errorMessage && (
-      <div className="bg-red-100 text-red-700 p-2 mb-4 rounded">{errorMessage}</div>
+    {errors && (
+      <div className="bg-red-100 text-red-700 p-2 mb-4 rounded">{errors}</div>
     )}
     {successMessage && (
       <div className="bg-green-100 text-green-700 p-2 mb-4 rounded">{successMessage}</div>
@@ -102,5 +129,6 @@ const AddRecipeForm = () => {
   </div>
   )
 }
+
 
 export default AddRecipeForm
