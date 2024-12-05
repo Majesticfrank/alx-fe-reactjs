@@ -29,25 +29,29 @@ const RecipeDetail = () => {
     if(loading) return  <div>Loading Recipes details...</div>;
     if (!recipes) return  <div>Recipes NoT Found!</div>;
   return (
-    <div className="p-4">
-      <h1 className="text-2xl font-bold">{recipes.title}</h1>
-      <img
-        src={recipes.image}
-        alt={recipes.title}
-        className="my-4 w-96 h-64 object-cover rounded-lg"
-      />
-      <p className="text-gray-700 mb-4">{recipes.summary}</p>
-      <h2 className="text-xl font-semibold">Ingredients:</h2>
-      <ul className="list-disc pl-6">
-        {recipes.ingredients.map((ingredient, index) => (
-          <li key={index} className="text-gray-600">
-            {ingredient}
-          </li>
-        ))}
-      </ul>
-      <h2 className="text-xl font-semibold mt-4">Instructions:</h2>
-      <p className="text-gray-700">{recipes.instructions}</p>
-    </div>
+<div className="max-w-lg mx-auto p-6 bg-white shadow-lg rounded-lg">
+  <h1 className="text-3xl font-bold text-gray-800 mb-4">{recipes.title}</h1>
+  <img
+    src={recipes.image}
+    alt={recipes.title}
+    className="my-4 w-full h-64 object-cover rounded-lg"
+  />
+  <p className="text-gray-700 mb-4">{recipes.summary}</p>
+  <div>
+    <h2 className="text-xl font-semibold text-gray-800">Ingredients:</h2>
+    <ul className="list-disc pl-6 mb-4">
+      {recipes.ingredients.map((ingredient, index) => (
+        <li key={index} className="text-gray-600">
+          {ingredient}
+        </li>
+      ))}
+    </ul>
+  </div>
+  <div>
+    <h2 className="text-xl font-semibold text-gray-800 mt-4">Instructions:</h2>
+    <p className="text-gray-700">{recipes.instructions}</p>
+  </div>
+</div>
   );
 };
 
