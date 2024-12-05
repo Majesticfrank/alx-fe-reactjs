@@ -1,52 +1,40 @@
 /* eslint-disable no-unused-vars */
 import React, {useState, useEffect} from 'react'
 import RecipeData from '../data.json';
+import {Link} from "react-router-dom";
 
 const HomePage = () => {
     const [recipes,setRecipes] = useState([]);
-    const [loading, setLoading] = useState(true);
+    
 
     useEffect(()=>{
-        const fetchRecipe= async()=>{
-            try{
-                setRecipes(RecipeData);
-                setLoading(false);
-            }catch(error){
-                    console.error('Error loading Recipes:', error);
-                    setLoading(false);
-            }
-        };
-        fetchRecipe();
+       setRecipes(RecipeData);
     }, []);
-
-    if(loading){
-        return <div>Loading recipes...</div>
-    }
 
 
   return (
-    <div className="bg-gray-100 min-h-screen p-6">
-    <h1 className="text-4xl font-bold text-center text-gray-800 mb-8">Recipe List</h1>
-    <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+    <div className="p-4">
+    <h1 className="text-2xl font-bold mb-4">Recipe List</h1>
+    <ul>
       {recipes.map((recipe) => (
-        <li
-          key={recipe.id}
-          className="bg-white shadow-lg rounded-lg overflow-hidden transform transition duration-300 hover:scale-105"
-        >
+        <li key={recipe.RecipeId} className="mb-6">
+          <h2 className="text-lg font-semibold">{recipe.title}</h2>
           <img
             src={recipe.image}
             alt={recipe.title}
-            className="w-full h-48 object-cover"
+            className="w-48 h-32 object-cover rounded-lg"
           />
-          <div className="p-4">
-            <h2 className="text-2xl font-semibold text-gray-800">{recipe.title}</h2>
-            <p className="text-gray-600 mt-2">{recipe.summary}</p>
-          </div>
+          <p>{recipe.summary}</p>
+          <Link
+            to={`/recipe/${recipe.RecipeId}`}
+            className="text-blue-500 hover:underline"
+          >
+            View Details
+          </Link>
         </li>
-          ))}
-        </ul>
-  
-      </div>
+      ))}
+    </ul>
+  </div>
   
   );
 };
