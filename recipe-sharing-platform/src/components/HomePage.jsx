@@ -17,7 +17,7 @@ const HomePage = () => {
     <h1 className="text-2xl font-bold mb-4">Recipe List</h1>
     <ul>
       {recipes.map((recipe) => (
-        <li key={recipe.id} className="mb-6">
+       <li key={recipe.id} className="mb-6 p-4 bg-white rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300">
           <h2 className="text-lg font-semibold">{recipe.title}</h2>
           <img
             src={recipe.image}
