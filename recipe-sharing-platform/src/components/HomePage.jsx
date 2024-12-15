@@ -17,7 +17,7 @@ const HomePage = () => {
     <h1 className="text-2xl font-bold mb-4">Recipe List</h1>
     <ul>
       {recipes.map((recipe) => (
-        <li key={recipe.RecipeId} className="mb-6">
+        <li key={recipe.id} className="mb-6">
           <h2 className="text-lg font-semibold">{recipe.title}</h2>
           <img
             src={recipe.image}
@@ -26,7 +26,7 @@ const HomePage = () => {
           />
           <p>{recipe.summary}</p>
           <Link
-            to={`/recipe/${recipe.RecipeId}`}
+            to={`/recipe/${recipe.id}`}
             className="text-blue-500 hover:underline"
           >
             View Details

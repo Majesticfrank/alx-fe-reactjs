@@ -7,14 +7,14 @@ import RecipeData from '../data.json';
 
 const RecipeDetail = () => {
 
-    const {RecipeId}= useParams();
+    const {id}= useParams();
     const [recipes,setRecipes] = useState()
     const [loading, setLoading] = useState(true);
 
     useEffect(()=>{
         const fetchRecipe= async()=>{
             try{
-                const foundRecipe=RecipeData.find((item)=>item.RecipeId ===parseInt(RecipeId));
+                const foundRecipe=RecipeData.find((item)=>item.id ===parseInt(id));
                 setRecipes(foundRecipe);
             }catch(error){
                 console.error('Error fetching Recipes', error)
@@ -24,7 +24,7 @@ const RecipeDetail = () => {
         };
         fetchRecipe();
         
-    },[RecipeId]);
+    },[id]);
 
     if(loading) return  <div>Loading Recipes details...</div>;
     if (!recipes) return  <div>Recipes NoT Found!</div>;
