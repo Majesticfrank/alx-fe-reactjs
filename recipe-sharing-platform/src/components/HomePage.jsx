@@ -15,6 +15,8 @@ const HomePage = () => {
   return (
     <div className="p-4">
     <h1 className="text-2xl font-bold mb-4">Recipe List</h1>
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+    
     <ul>
       {recipes.map((recipe) => (
        <li key={recipe.id} className="mb-6 p-4 bg-white rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300">
@@ -36,12 +38,14 @@ const HomePage = () => {
         </li>
 
       ))}
+  
     </ul>
 
     
     <Link to="/add-recipe" className="text-blue-500 hover:underline">
 Add a New Recipe
 </Link>
+  </div>
   </div>
   
   );
